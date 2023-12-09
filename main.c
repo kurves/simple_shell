@@ -5,21 +5,20 @@
 
 /**
  * main - check the code
- *
+ * @argc:  number of arguments
+ * @argv: array of arguments
  * Return: Always 0.
  */
-int main(void)
+int main(int argc, char *argv[])
 {
-	char LINE[MAX_LENGTH];
-	while (1)
+	if (argc == 1)
 	{
-		display_prompt();
-		if (fgets(LINE, MAX_LENGTH, stdin) == NULL) 
-		{
-			printf("\n");
-			exit(EXIT_SUCCESS);
-		}
-		process_input(LINE);
+		interactive_mode();
+	}
+	else
+	{
+		fprintf(stderr, "Usage: %s [file]\n", argv[0]);
+		exit(EXIT_FAILURE);
 	}
 	return (0);
 }

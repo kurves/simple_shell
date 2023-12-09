@@ -5,5 +5,6 @@
 
 void display_prompt(void);
 void execute_command(char *command);
+void interactive_mode(void);
 void process_input(char *input);
 #endif
