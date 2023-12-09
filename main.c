@@ -19,8 +19,7 @@ int main(void)
 			printf("\n");
 			exit(EXIT_SUCCESS);
 		}
-		LINE[strcspn(LINE, "\n")] = '\0';
-		execute_command(LINE);
+		process_input(LINE);
 	}
 	return (0);
 }
