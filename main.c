@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "main.h"
+#include <string.h>
 
 /**
  * main - check the code
@@ -9,15 +10,17 @@
  */
 int main(void)
 {
+	char LINE[MAX_LENGTH];
 	while (1)
 	{
-		char LINE[MAX_LENGTH];
 		display_prompt();
 		if (fgets(LINE, MAX_LENGTH, stdin) == NULL) 
 		{
 			printf("\n");
-			break;
+			exit(EXIT_SUCCESS);
 		}
+		LINE[strcspn(LINE, "\n")] = '\0';
+		execute_command(LINE);
 	}
 	return (0);
 }
