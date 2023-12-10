@@ -7,7 +7,7 @@
 #include "main.h"
 /**
  * process_input - function to process input
- * @void: void parameter
+ * @input: void parameter
  * Description: function that  processes user input
  * Return: nothing
  */

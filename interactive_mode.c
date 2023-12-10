@@ -11,15 +11,16 @@
  */
 void interactive_mode(void)
 {
-        char LINE[MAX_LENGTH];
-        while (1)
-        {
-                display_prompt();
-                if (fgets(LINE, MAX_LENGTH, stdin) == NULL) 
-                {
-                        printf("\n");
-                        exit(EXIT_SUCCESS);
-                }
-                process_input(LINE);
-        }
+	char LINE[MAX_LENGTH];
+
+	while (1)
+	{
+		display_prompt();
+		if (fgets(LINE, MAX_LENGTH, stdin) == NULL)
+		{
+			printf("\n");
+			exit(EXIT_SUCCESS);
+		}
+		process_input(LINE);
+	}
 }
