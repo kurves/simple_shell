@@ -23,18 +23,24 @@ void execute_command(char *command)
 	{
 		printf("Exiting simple_shell...\n");
 	}
-	else
+	if (pid == -1) 
 	{
-		if (pid == -1) 
+		perror("fork");
+		exit(EXIT_FAILURE);
+	} 
+	else if (pid == 0)
+	{
+		execlp(command, command, NULL);
+		perror(command);
+		exit(EXIT_FAILURE);
+	}
+	else 
+	{
+		int status;
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status)) 
 		{
-			perror("fork");
-			exit(EXIT_FAILURE);
-		} 
-		else if (pid == 0)
-		{
-			execlp(command, command, NULL);
-			perror("execlp");
-			exit(EXIT_FAILURE);
+		
 		}
 	}
 }
