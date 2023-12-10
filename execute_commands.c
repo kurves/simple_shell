@@ -36,19 +36,5 @@ void execute_command(char *command)
 			perror("execlp");
 			exit(EXIT_FAILURE);
 		}
-		else
-		{
-			int status;
-			waitpid(pid, &status, 0);
-
-			if (WIFEXITED(status))
-			{
-				printf("Command executed with exit status %d\n", WEXITSTATUS(status));
-			} 
-			else
-			{
-				printf("Command terminated abnormally\n");
-			}
-    		}
 	}
 }
