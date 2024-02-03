@@ -14,9 +14,10 @@
 
 void non_interactive_mode(FILE *file)
 {
-	char LINE[MAX_LENGTH];
+	char line[MAX_LENGTH];
 	char *args[] = { NULL };
-	
+	pid_t pid;
+
 	while (1)
 	{
 		printf("$ ");
@@ -28,7 +29,7 @@ void non_interactive_mode(FILE *file)
 			break;
         	}
 		line[strcspn(line, "\n")] = '\0';
-		pid_t pid = fork();
+		pid = fork();
 
 		if (pid == -1)
 		{
