@@ -15,7 +15,18 @@
 void non_interactive_mode(FILE *file)
 {
 	char LINE[MAX_LENGTH];
-
+	char *args[] = { NULL };
+	
+	while (1)
+	{
+		printf("$ ");
+		fflush(stdout);
+		
+		if (fgets(buffer, BUFFER_SIZE, stdin) == NULL)
+		{
+			printf("\n");
+			break;
+        }
 	while (fgets(LINE, sizeof(LINE), file) != NULL)
 	{
 		process_input(LINE);
