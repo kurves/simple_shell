@@ -15,7 +15,25 @@
 void process_input(char *input)
 {
 	input[strcspn(input, "\n")] = '\0';
-
+	char *args[] = { input, NULL };
+	pid_t pid;
+	pid_t pid = fork();
+	
+	if (pid == -1)
+	{
+		perror("fork");
+		exit(EXIT_FAILURE);
+	}
+	else if (pid == 0)
+	{
+		execve(input, args, NULL);
+		perror("execve");
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		wait(NULL);
+	}
 	if (strcmp(input, "exit") == 0)
 	{
 		exit(EXIT_SUCCESS);
