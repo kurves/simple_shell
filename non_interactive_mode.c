@@ -22,12 +22,12 @@ void non_interactive_mode(FILE *file)
 		printf("$ ");
 		fflush(stdout);
 		
-		if (fgets(buffer, BUFFER_SIZE, stdin) == NULL)
+		if (fgets(line, MAX_LENGTH, file) == NULL)
 		{
 			printf("\n");
 			break;
         	}
-		buffer[strcspn(buffer, "\n")] = '\0';
+		line[strcspn(line, "\n")] = '\0';
 		pid_t pid = fork();
 
 		if (pid == -1)
@@ -37,7 +37,7 @@ void non_interactive_mode(FILE *file)
 		}
 		else if (pid == 0)
 		{
-			execve(buffer, args, NULL);
+			execve(line, args, NULL);
 			perror("execve");
 			exit(EXIT_FAILURE);
 		}
@@ -45,10 +45,10 @@ void non_interactive_mode(FILE *file)
 		{
 			wait(NULL);
 		}
-		while (fgets(LINE, sizeof(LINE), file) != NULL)
+		while (fgets(line, sizeof(line), file) != NULL)
 		{
 		
-			process_input(LINE);
+			process_input(line);
 		}
 	}
 }
