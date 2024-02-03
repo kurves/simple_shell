@@ -26,9 +26,29 @@ void non_interactive_mode(FILE *file)
 		{
 			printf("\n");
 			break;
-        }
-	while (fgets(LINE, sizeof(LINE), file) != NULL)
-	{
-		process_input(LINE);
+        	}
+		buffer[strcspn(buffer, "\n")] = '\0';
+		pid_t pid = fork();
+
+		if (pid == -1)
+		{
+			perror("fork");
+			exit(EXIT_FAILURE);
+		}
+		else if (pid == 0)
+		{
+			execve(buffer, args, NULL);
+			perror("execve");
+			exit(EXIT_FAILURE);
+		}
+		else
+		{
+			wait(NULL);
+		}
+		while (fgets(LINE, sizeof(LINE), file) != NULL)
+		{
+		
+			process_input(LINE);
+		}
 	}
 }
