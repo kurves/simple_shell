@@ -1,12 +1,11 @@
 #ifndef MAIN_H
 #define MAIN_H
 #include <stdio.h>
-#define MAX_LENGTH 100
+#define MAX_LENGTH 1024
 
 
 void display_prompt(void);
-void execute_command(char *command);
 void interactive_mode(void);
-void process_input(char *input);
-void non_interactive_mode(FILE *file);
+void process_input(char *args[]);
+void non_interactive_mode(int argc, char *argv[]);
 #endif

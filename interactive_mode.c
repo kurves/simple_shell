@@ -20,14 +20,15 @@ void interactive_mode(void)
 		display_prompt();
 		if (fgets(input, MAX_LENGTH, stdin) == NULL)
 		{
-			printf("\n");
-			exit(EXIT_SUCCESS);
+			print_error("Error reading input");
+			continue;
 		}
 		input[strcspn(input, "\n")] = '\0';
 		if (strcmp(input, "exit") == 0)
 		{
 			break;
 		}
-		process_input(input);
+		char *args[] = {input, NULL};
+		process_input(args);
 	}
 }
