@@ -12,48 +12,13 @@
  * Return: nothing
  */
 
-void non_interactive_mode(FILE *file)
+void non_interactive_mode(int argc, char *argv[])
 {
-	char line[MAX_LENGTH];
-	char *args[] = { NULL };
-	pid_t pid;
-
-	while (fgets(line, sizeof(line), file) != NULL)
+	char input[MAX_LENGTH];
+	
+	for (int i = 1; i < argc; i++)
 	{
-		process_input(line);
+		process_input(argv[i]);
 	}
-	while (1)
-	{
-		printf("$ ");
-		fflush(stdout);
-		
-		if (fgets(line, MAX_LENGTH, file) == NULL)
-		{
-			printf("\n");
-			break;
-        	}
-		line[strcspn(line, "\n")] = '\0';
-		pid = fork();
 
-		if (pid == -1)
-		{
-			perror("fork");
-			exit(EXIT_FAILURE);
-		}
-		else if (pid == 0)
-		{
-			execve(line, args, NULL);
-			perror("execve");
-			exit(EXIT_FAILURE);
-		}
-		else
-		{
-			wait(NULL);
-		}
-		while (fgets(line, sizeof(line), file) != NULL)
-		{
-		
-			process_input(line);
-		}
-	}
 }
