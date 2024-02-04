@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "main.h"
 #include <string.h>
+#define MAX_LENGTH 1024
 
 /**
  * interactive_mode - function that handles the interactive shell
@@ -12,16 +13,21 @@
  */
 void interactive_mode(void)
 {
-	char LINE[MAX_LENGTH];
+	char input[MAX_LENGTH];
 
 	while (1)
 	{
 		display_prompt();
-		if (fgets(LINE, MAX_LENGTH, stdin) == NULL)
+		if (fgets(input, MAX_LENGTH, stdin) == NULL)
 		{
 			printf("\n");
 			exit(EXIT_SUCCESS);
 		}
-		process_input(LINE);
+		input[strcspn(input, "\n")] = '\0';
+		if (strcmp(input, "exit") == 0)
+		{
+			break;
+		}
+		process_input(input);
 	}
 }

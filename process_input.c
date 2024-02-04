@@ -14,10 +14,13 @@
 
 void process_input(char *input)
 {
+
 	input[strcspn(input, "\n")] = '\0';
-	char *args[] = { input, NULL };
+	char *args[] = {  NULL };
+
 	pid_t pid;
-	pid_t pid = fork();
+
+	pid = fork();
 	
 	if (pid == -1)
 	{

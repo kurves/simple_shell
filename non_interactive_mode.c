@@ -18,6 +18,10 @@ void non_interactive_mode(FILE *file)
 	char *args[] = { NULL };
 	pid_t pid;
 
+	while (fgets(line, sizeof(line), file) != NULL)
+	{
+		process_input(line);
+	}
 	while (1)
 	{
 		printf("$ ");

@@ -32,5 +32,5 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Usage: %s [file]\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
