@@ -12,13 +12,11 @@
  * Return: nothing
  */
 
-void process_input(char *input)
+void process_input(char *args[])
 {
 
-	input[strcspn(input, "\n")] = '\0';
-	char *args[] = {  NULL };
-
 	pid_t pid;
+	int status
 
 	pid = fork();
 	
@@ -29,20 +27,14 @@ void process_input(char *input)
 	}
 	else if (pid == 0)
 	{
-		execve(input, args, NULL);
-		perror("execve");
-		exit(EXIT_FAILURE);
+		if (execvp(args[0], args) == -1)
+		{
+			perror("execve");
+			exit(EXIT_FAILURE);
+		}
 	}
 	else
 	{
-		wait(NULL);
-	}
-	if (strcmp(input, "exit") == 0)
-	{
-		exit(EXIT_SUCCESS);
-	}
-	else
-	{
-		execute_command(input);
+		waitpid(pid, &status, 0);
 	}
 }
