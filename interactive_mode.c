@@ -11,9 +11,10 @@
  * Description: function that handles the interactive shell commands
  * Return: nothing
  */
-void interactive_mode(void)
+void interactive_mode()
 {
 	char input[MAX_LENGTH];
+	char *args[2];
 
 	while (1)
 	{
@@ -28,7 +29,8 @@ void interactive_mode(void)
 		{
 			break;
 		}
-		char *args[] = {input, NULL};
+		args[0] = input;
+		args[1] = NULL;
 		process_input(args);
 	}
 }

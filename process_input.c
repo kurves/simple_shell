@@ -42,3 +42,14 @@ void process_input(char *args[])
 		waitpid(pid, &status, 0);
 	}
 }
+
+/**
+ * print_error - function to prcess input
+ * @message: error message
+ * Description: function that  processes user input
+ * Return: nothing
+ */
+void print_error(char *message)
+{
+	perror(message);
+}
