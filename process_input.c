@@ -15,11 +15,15 @@
 void process_input(char *args[])
 {
 
+        char input[MAX_LENGTH];
 	pid_t pid;
-	int status
-
+        int status;
 	pid = fork();
-	
+
+        if (strcmp(input, "exit") == 0 || strcmp(input, "quit") == 0)
+        {
+                printf("Exiting simple_shell...\n");
+        }
 	if (pid == -1)
 	{
 		perror("fork");
