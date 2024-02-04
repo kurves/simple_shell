@@ -20,9 +20,10 @@ void process_input(char *args[])
         int status;
 	pid = fork();
 
-        if (strcmp(input, "exit") == 0 || strcmp(input, "quit") == 0)
+        if (strcmp(args[0], "exit") == 0 || strcmp(args[0], "quit") == 0)
         {
                 printf("Exiting simple_shell...\n");
+		exit(EXIT_SUCCESS);
         }
 	if (pid == -1)
 	{
