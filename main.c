@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 			perror("Error opening file");
 			exit(EXIT_FAILURE);
 		}
-		non_interactive_mode(file);
+		non_interactive_mod(argc, argv);
 		fclose(file);
 	}
 	else
