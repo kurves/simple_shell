@@ -14,11 +14,12 @@
 
 void non_interactive_mode(int argc, char *argv[])
 {
-	char input[MAX_LENGTH];
-	
+	int i ;
+
 	for (int i = 1; i < argc; i++)
 	{
-		process_input(argv[i]);
+		char *args[] = {argv[i], NULL};
+		process_input(args);
 	}
 
 }
